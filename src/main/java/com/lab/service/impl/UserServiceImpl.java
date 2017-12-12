@@ -1,6 +1,7 @@
 package com.lab.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.lab.dao.AnnotationUserMapper;
 import com.lab.dao.UserMapper;
 import com.lab.model.User;
 import com.lab.service.UserService;
@@ -19,6 +20,9 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private AnnotationUserMapper annotationUserMapper;
+
 
     @Override
     public int addUser(User user) {
@@ -36,5 +40,12 @@ public class UserServiceImpl implements UserService{
         //将参数传给这个方法就可以实现物理分页了，非常简单。
         PageHelper.startPage(pageNum, pageSize);
         return userMapper.selectAllUser();
+    }
+
+
+    @Override
+    public List<User> findAllUserByAnnotation(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        return annotationUserMapper.selectAllUser();
     }
 }

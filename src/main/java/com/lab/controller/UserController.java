@@ -27,10 +27,9 @@ public class UserController {
         return userService.findAllUser(pageNum,pageSize);
     }
 
+    @RequestMapping(value = "/annotation/all/{pageNum}/{pageSize}", produces = {"application/json;charset=UTF-8"})
+    public Object findAllUserByAnnotation(@PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize){
 
-    @ResponseBody
-    @GetMapping("/test/{pageNum}")
-    public int test(@PathVariable("pageNum") int pageNum) {
-        return pageNum;
+        return userService.findAllUserByAnnotation(pageNum,pageSize);
     }
 }

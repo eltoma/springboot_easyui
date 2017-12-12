@@ -10,11 +10,12 @@ import java.util.List;
  * Created by elotoma on 2017/12/11.
  */
 
-
+@Service(value="userService")
 public interface UserService {
 
     int addUser(User user);
 
     List<User> findAllUser(int pageNum, int pageSize);
 
+    List<User> findAllUserByAnnotation(int pageNum, int pageSize);
 }
