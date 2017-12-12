@@ -26,7 +26,7 @@ Lab108教研室管理系统
 ## Maven dependencyManagement和parent标签
 - <dependencyManagement>用于``声明依赖`` 并不 ``引入依赖``
 - <parent>声明要继承的POM, 引入父POM中<dependencyManagement>所声明的依赖（版本号）
-- 两者配合使用可以通过根父项目控制子项目依赖的jar包的```版本号```
+- 两者配合使用可以通过根父项目控制子项目依赖的jar包的``版本号``
 
 
 ## 注解的定义和使用
