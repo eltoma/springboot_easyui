@@ -23,7 +23,7 @@ Lab108教研室管理系统
 - starter项目将各类模块的配置集中到application-(dev/prod).*中
 - spring-boot带来各种自动配置功能，底层的本质是：```扫描classpath 和 约定匹配```
 
-## maven <dependencyManagement>和<parent>标签
+## Maven dependencyManagement和parent标签
 - <dependencyManagement>用于``声明依赖`` 并不 ``引入依赖``
 - <parent>声明要继承的POM, 引入父POM中<dependencyManagement>所声明的依赖（版本号）
 - 两者配合使用可以通过根父项目控制子项目依赖的jar包的```版本号```
