@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lab.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.lab.model.User" >
+    <id column="UserID" property="userid" jdbcType="INTEGER" />
+    <result column="UserName" property="username" jdbcType="CHAR" />
+    <result column="password" property="password" jdbcType="CHAR" />
+    <result column="EMailAddress" property="emailaddress" jdbcType="CHAR" />
+    <result column="Name" property="name" jdbcType="CHAR" />
+    <result column="Gender" property="gender" jdbcType="BIT" />
+    <result column="studentID" property="studentid" jdbcType="CHAR" />
+    <result column="Major" property="major" jdbcType="CHAR" />
+    <result column="BirthTime" property="birthtime" jdbcType="TIMESTAMP" />
+    <result column="GraduateTime" property="graduatetime" jdbcType="TIMESTAMP" />
+    <result column="GraduateDestination" property="graduatedestination" jdbcType="VARCHAR" />
+    <result column="CreateTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="LastLoginTime" property="lastlogintime" jdbcType="TIMESTAMP" />
+    <result column="LoginTimes" property="logintimes" jdbcType="BIGINT" />
+    <result column="IsDeleted" property="isdeleted" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    UserID, UserName, password, EMailAddress, Name, Gender, studentID, Major, BirthTime, 
+    GraduateTime, GraduateDestination, CreateTime, LastLoginTime, LoginTimes, IsDeleted
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where UserID = #{userid,jdbcType=INTEGER}
+  </select>
+
+  <!-- 这个方法是我自己加的 -->
+  <select id="selectAllUser" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where UserID = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lab.model.User" >
+    insert into user (UserID, UserName, password, 
+      EMailAddress, Name, Gender, studentID, 
+      Major, BirthTime, GraduateTime, 
+      GraduateDestination, CreateTime, LastLoginTime, 
+      LoginTimes, IsDeleted)
+    values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=CHAR}, #{password,jdbcType=CHAR}, 
+      #{emailaddress,jdbcType=CHAR}, #{name,jdbcType=CHAR}, #{gender,jdbcType=BIT}, #{studentid,jdbcType=CHAR}, 
+      #{major,jdbcType=CHAR}, #{birthtime,jdbcType=TIMESTAMP}, #{graduatetime,jdbcType=TIMESTAMP}, 
+      #{graduatedestination,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{lastlogintime,jdbcType=TIMESTAMP}, 
+      #{logintimes,jdbcType=BIGINT}, #{isdeleted,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lab.model.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="username != null" >
+        UserName,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="emailaddress != null" >
+        EMailAddress,
+      </if>
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="gender != null" >
+        Gender,
+      </if>
+      <if test="studentid != null" >
+        studentID,
+      </if>
+      <if test="major != null" >
+        Major,
+      </if>
+      <if test="birthtime != null" >
+        BirthTime,
+      </if>
+      <if test="graduatetime != null" >
+        GraduateTime,
+      </if>
+      <if test="graduatedestination != null" >
+        GraduateDestination,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="lastlogintime != null" >
+        LastLoginTime,
+      </if>
+      <if test="logintimes != null" >
+        LoginTimes,
+      </if>
+      <if test="isdeleted != null" >
+        IsDeleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=CHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=CHAR},
+      </if>
+      <if test="emailaddress != null" >
+        #{emailaddress,jdbcType=CHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=BIT},
+      </if>
+      <if test="studentid != null" >
+        #{studentid,jdbcType=CHAR},
+      </if>
+      <if test="major != null" >
+        #{major,jdbcType=CHAR},
+      </if>
+      <if test="birthtime != null" >
+        #{birthtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="graduatetime != null" >
+        #{graduatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="graduatedestination != null" >
+        #{graduatedestination,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastlogintime != null" >
+        #{lastlogintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logintimes != null" >
+        #{logintimes,jdbcType=BIGINT},
+      </if>
+      <if test="isdeleted != null" >
+        #{isdeleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lab.model.User" >
+    update user
+    <set >
+      <if test="username != null" >
+        UserName = #{username,jdbcType=CHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=CHAR},
+      </if>
+      <if test="emailaddress != null" >
+        EMailAddress = #{emailaddress,jdbcType=CHAR},
+      </if>
+      <if test="name != null" >
+        Name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="gender != null" >
+        Gender = #{gender,jdbcType=BIT},
+      </if>
+      <if test="studentid != null" >
+        studentID = #{studentid,jdbcType=CHAR},
+      </if>
+      <if test="major != null" >
+        Major = #{major,jdbcType=CHAR},
+      </if>
+      <if test="birthtime != null" >
+        BirthTime = #{birthtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="graduatetime != null" >
+        GraduateTime = #{graduatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="graduatedestination != null" >
+        GraduateDestination = #{graduatedestination,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastlogintime != null" >
+        LastLoginTime = #{lastlogintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logintimes != null" >
+        LoginTimes = #{logintimes,jdbcType=BIGINT},
+      </if>
+      <if test="isdeleted != null" >
+        IsDeleted = #{isdeleted,jdbcType=BIT},
+      </if>
+    </set>
+    where UserID = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lab.model.User" >
+    update user
+    set UserName = #{username,jdbcType=CHAR},
+      password = #{password,jdbcType=CHAR},
+      EMailAddress = #{emailaddress,jdbcType=CHAR},
+      Name = #{name,jdbcType=CHAR},
+      Gender = #{gender,jdbcType=BIT},
+      studentID = #{studentid,jdbcType=CHAR},
+      Major = #{major,jdbcType=CHAR},
+      BirthTime = #{birthtime,jdbcType=TIMESTAMP},
+      GraduateTime = #{graduatetime,jdbcType=TIMESTAMP},
+      GraduateDestination = #{graduatedestination,jdbcType=VARCHAR},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      LastLoginTime = #{lastlogintime,jdbcType=TIMESTAMP},
+      LoginTimes = #{logintimes,jdbcType=BIGINT},
+      IsDeleted = #{isdeleted,jdbcType=BIT}
+    where UserID = #{userid,jdbcType=INTEGER}
+  </update>
+</mapper>
