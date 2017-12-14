@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link rel="stylesheet" type="text/css" href="/easyui/themes/bootstrap/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/easyui/themes/icon.css">
+    <script type="text/javascript" src="/easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/js/entry/register.js"></script>
+    <script type="text/javascript" src="/js/entry/hwUtils.js"></script>
+    <style type="text/css">
+        body{
+            background-image: url(../../img/login.jpg);
+            background-size:cover;
+        }
+    </style>
+</head>
+<body>
+<!--<form id="ff" action="login.html" method="post" align="center">-->
+<img src="img/login.jpg">
+        <form id="index_regForm" method="post" style="font-family: '宋体',Simsun;" >
+            <h1 align="center">Welcome to 108</h1>
+
+            <table align="center" cellpadding="15">
+
+                <tr>
+                    <th align="center">用户名</th>
+                    <td> <input name="name" class="easyui-validatebox" data-options="required:true,missingMessage:'请输入用户名'" style="width: 200px;height:20px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th align="center">密码</th>
+                    <td><input name="pwd" class="easyui-validatebox" type="password" data-options="required:true,missingMessage:'请输入密码'" style="width: 200px;height:20px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <th align="center">重复密码</th>
+                       <td> <input name="rePwd" class="easyui-validatebox" type="password" data-options="required:true,missingMessage:'请输入确认密码',validType:'eqPwd[\'#index_regForm input[name=pwd]\']'" style="width: 200px;height:20px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th align="center">邮箱</th>
+                        <td><input name="email" class="easyui-validatebox" data-options="required:true,missingMessage:'请输入邮箱'" style="width: 200px;height:20px;"/></td>
+                </tr>
+                <tr>
+                    <td align="center" colspan="2">
+                        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()" style="width:80px">注册</a></td>
+                </tr>
+            </table>
+        </form>
+</body>
+</html>

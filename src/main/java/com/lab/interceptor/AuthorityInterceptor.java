@@ -25,6 +25,7 @@ public class AuthorityInterceptor implements HandlerInterceptor{
     {
         allowedUrls.add("/");
         allowedUrls.add("/login");
+        // allowedUrls.add("/")
     }
 
     @Override

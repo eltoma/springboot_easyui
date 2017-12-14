@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log</title>
+    <link rel="stylesheet" type="text/css" href="/easyui/themes/bootstrap/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/easyui/themes/icon.css">
+
+    <script type="text/javascript" src="/easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/js/systemManager/log.js"></script>
+</head>
+<body  class="easyui-layout">
+<div data-options="region:'north'" style="width: 100%; height: 50px; padding-top: 5px">
+<table>
+    <form>
+        <tr>
+            <td>
+                <input class="easyui-textbox" label="关键词"
+                       labelPosition="before"
+                       labelAlign="right"
+                       data-options="prompt:'输入检索关键词',validType:'text'"
+                       style="width:300px;">
+            </td>
+            <td>
+                <select id="projectname" class="easyui-combobox" name="dept" style="width:200px;">
+                    <option value="aa">瑞迪ERP</option>
+                    <option>乐山希尔ERP</option>
+                    <option>华体照明</option>
+                </select>
+                <!--<input id="projectname" classs="easyui-combobox" name="dept" data-options=""-->
+                       <!--data-options="valueField:'id',textField:'text',url:'get_data.php'">-->
+            </td>
+            <td>
+                <input  label="日期" id="dd" type="text" class="easyui-datebox" required="required" style="width:200px;">
+            </td>
+            <td>
+                <a class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="Search();">检索</a>
+            </td>
+        </tr>
+    </form>
+</table>
+</div>
+
+<div data-options="region:'center',split:true" style=" background: #ffff;height:320px">
+    <table id="dataview2"> </table>
+    <div id="toolbar2" style="height:30px">
+    </div>
+</div>
+</body>
+</html>
