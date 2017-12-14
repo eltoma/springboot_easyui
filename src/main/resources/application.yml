@@ -1,16 +1,8 @@
 spring:
   profiles:
     active: dev
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/dbgirl
-    username: root
-    password: root
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
 
+  # 模板引擎
   thymeleaf:
     prefix: classpath:/views/
     suffix: .html
@@ -18,3 +10,43 @@ spring:
     encoding: UTF-8
     content-type: text/html
     cache: false
+
+  # 数据源
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/lab108
+    username: root
+    password: root
+    # durid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+
+# mybatis 配置
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.lab.model
+
+#pagehelper分页插件
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+
+# 显示sql语句日志配置
+logging.level:
+    com.lab.mapper: debug
+
+

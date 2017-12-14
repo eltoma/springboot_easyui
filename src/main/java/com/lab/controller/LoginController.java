@@ -1,6 +1,6 @@
 package com.lab.controller;
 
-import com.lab.model.Result;
+import com.lab.model.SubmitResult;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,11 +28,11 @@ public class LoginController {
 
     @ResponseBody
     @PostMapping("/login")
-    public Result login(@RequestParam("userName") String userName,
-                        @RequestParam("password") String password,
-                        HttpSession session) {
+    public SubmitResult login(@RequestParam("userName") String userName,
+                              @RequestParam("password") String password,
+                              HttpSession session) {
 
-        Result res = new Result();
+        SubmitResult res = new SubmitResult();
         if(checkAccess(userName, password)) {
             res.setSuccess(true);
 

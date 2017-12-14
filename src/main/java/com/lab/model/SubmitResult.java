@@ -2,9 +2,9 @@ package com.lab.model;
 
 /**
  * Created by elotoma on 2017/12/1.
- * 返回json的标准结构之一
+ * 提交类接口的返回结构
  */
-public class Result {
+public class SubmitResult {
     private boolean success;
     private String msg;
 

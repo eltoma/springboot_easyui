@@ -15,8 +15,14 @@
         <version>1.5.7.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <dependencies>
 
+    <properties>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+    </properties>
+
+    <dependencies>
         <!-- indispensable dependency for web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -34,10 +40,9 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
-        <!-- jpa support -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
 
         <!-- thymeleaf template engine -->
@@ -68,12 +73,49 @@
             <artifactId>jackson-annotations</artifactId>
             <version>2.8.3</version>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-joda</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-parameter-names</artifactId>
+        </dependency>
 
+
+        <!-- spring-boot hot reboot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <version>1.5.4.RELEASE</version>
             <optional>true</optional>
+        </dependency>
+
+        <!-- alibaba的druid数据库连接池 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.11</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+
+        <!-- mybatis's spring-boot starter-->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>1.3.0</version>
+        </dependency>
+
+        <!-- 分页插件 -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.1.2</version>
         </dependency>
 
     </dependencies>
@@ -87,6 +129,18 @@
                 <configuration>
                     <!-- hot update -->
                     <fork>true</fork>
+                </configuration>
+            </plugin>
+
+            <!-- mybatis 代码自动生成插件 -->
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.2</version>
+                <configuration>
+                    <configurationFile>${basedir}/src/main/resources/generator/generatorConfig.xml</configurationFile>
+                    <overwrite>true</overwrite>
+                    <verbose>true</verbose>
                 </configuration>
             </plugin>
         </plugins>
