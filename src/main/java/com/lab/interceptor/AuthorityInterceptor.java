@@ -11,6 +11,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.Map;
 
 import static com.lab.constant.Constant.SESSIONKEY_USER_NAME;
 
@@ -87,13 +89,17 @@ public class AuthorityInterceptor implements HandlerInterceptor{
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss SSS");
         Date startTime = (Date)httpServletRequest.getAttribute(REQ_START_TIME);
 
+
         sb.append("\n======================================================");
         sb.append("\n-- 请求URL：" + httpServletRequest.getMethod() + " " + httpServletRequest.getRequestURI());
         sb.append("\n-- 请求时间：" + df.format(startTime));
         sb.append("\n-- 持续时间：" + Long.valueOf(System.currentTimeMillis() - startTime.getTime()));
+        sb.append("\n-- 持续时间：" + httpServletRequest.getContentType());
+
         if(e != null) {
             sb.append("\n-- 异常信息：" + e.getMessage());
         }
+
         sb.append("\n======================================================\n");
 
         System.out.println(sb.toString());

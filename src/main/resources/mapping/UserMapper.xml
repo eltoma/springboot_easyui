@@ -19,7 +19,7 @@
     <result column="IsDeleted" property="isdeleted" jdbcType="BIT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    UserID, UserName, password, EMailAddress, Name, Gender, studentID, Major, BirthTime, 
+    UserID, UserName, password, EMailAddress, Name, Gender, studentID, Major, BirthTime,
     GraduateTime, GraduateDestination, CreateTime, LastLoginTime, LoginTimes, IsDeleted
   </sql>
 
@@ -32,10 +32,10 @@
 
   <!-- 这个方法是我自己加的 -->
   <select id="selectAllUser" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from user
-  </select>
+  select
+  <include refid="Base_Column_List" />
+  from user
+</select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user

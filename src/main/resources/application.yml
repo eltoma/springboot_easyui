@@ -14,7 +14,7 @@ spring:
   # 数据源
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/lab108
+    url: jdbc:mysql://127.0.0.1:3306/108
     username: root
     password: root
     # durid数据源
@@ -38,7 +38,7 @@ mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.lab.model
 
-#pagehelper分页插件
+# pagehelper分页插件
 pagehelper:
     helperDialect: mysql
     reasonable: true

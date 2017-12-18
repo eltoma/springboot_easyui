@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lab.dao.ActivityrecordMapper" >
+  <resultMap id="BaseResultMap" type="com.lab.model.Activityrecord" >
+    <id column="ActivityRecordCode" property="activityrecordcode" jdbcType="VARCHAR" />
+    <result column="SectionCode" property="sectioncode" jdbcType="VARCHAR" />
+    <result column="UserID" property="userid" jdbcType="INTEGER" />
+    <result column="ActivityRecordName" property="activityrecordname" jdbcType="VARCHAR" />
+    <result column="PublishTime" property="publishtime" jdbcType="TIMESTAMP" />
+    <result column="LastModefiedTime" property="lastmodefiedtime" jdbcType="DATE" />
+    <result column="IsDeleted" property="isdeleted" jdbcType="BIT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.lab.model.Activityrecord" extends="BaseResultMap" >
+    <result column="Text" property="text" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ActivityRecordCode, SectionCode, UserID, ActivityRecordName, PublishTime, LastModefiedTime, 
+    IsDeleted
+  </sql>
+  <sql id="Blob_Column_List" >
+    Text
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from activityrecord
+    where ActivityRecordCode = #{activityrecordcode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from activityrecord
+    where ActivityRecordCode = #{activityrecordcode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lab.model.Activityrecord" >
+    insert into activityrecord (ActivityRecordCode, SectionCode, 
+      UserID, ActivityRecordName, PublishTime, 
+      LastModefiedTime, IsDeleted, Text
+      )
+    values (#{activityrecordcode,jdbcType=VARCHAR}, #{sectioncode,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=INTEGER}, #{activityrecordname,jdbcType=VARCHAR}, #{publishtime,jdbcType=TIMESTAMP}, 
+      #{lastmodefiedtime,jdbcType=DATE}, #{isdeleted,jdbcType=BIT}, #{text,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lab.model.Activityrecord" >
+    insert into activityrecord
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="activityrecordcode != null" >
+        ActivityRecordCode,
+      </if>
+      <if test="sectioncode != null" >
+        SectionCode,
+      </if>
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="activityrecordname != null" >
+        ActivityRecordName,
+      </if>
+      <if test="publishtime != null" >
+        PublishTime,
+      </if>
+      <if test="lastmodefiedtime != null" >
+        LastModefiedTime,
+      </if>
+      <if test="isdeleted != null" >
+        IsDeleted,
+      </if>
+      <if test="text != null" >
+        Text,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="activityrecordcode != null" >
+        #{activityrecordcode,jdbcType=VARCHAR},
+      </if>
+      <if test="sectioncode != null" >
+        #{sectioncode,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="activityrecordname != null" >
+        #{activityrecordname,jdbcType=VARCHAR},
+      </if>
+      <if test="publishtime != null" >
+        #{publishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastmodefiedtime != null" >
+        #{lastmodefiedtime,jdbcType=DATE},
+      </if>
+      <if test="isdeleted != null" >
+        #{isdeleted,jdbcType=BIT},
+      </if>
+      <if test="text != null" >
+        #{text,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lab.model.Activityrecord" >
+    update activityrecord
+    <set >
+      <if test="sectioncode != null" >
+        SectionCode = #{sectioncode,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        UserID = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="activityrecordname != null" >
+        ActivityRecordName = #{activityrecordname,jdbcType=VARCHAR},
+      </if>
+      <if test="publishtime != null" >
+        PublishTime = #{publishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastmodefiedtime != null" >
+        LastModefiedTime = #{lastmodefiedtime,jdbcType=DATE},
+      </if>
+      <if test="isdeleted != null" >
+        IsDeleted = #{isdeleted,jdbcType=BIT},
+      </if>
+      <if test="text != null" >
+        Text = #{text,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ActivityRecordCode = #{activityrecordcode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lab.model.Activityrecord" >
+    update activityrecord
+    set SectionCode = #{sectioncode,jdbcType=VARCHAR},
+      UserID = #{userid,jdbcType=INTEGER},
+      ActivityRecordName = #{activityrecordname,jdbcType=VARCHAR},
+      PublishTime = #{publishtime,jdbcType=TIMESTAMP},
+      LastModefiedTime = #{lastmodefiedtime,jdbcType=DATE},
+      IsDeleted = #{isdeleted,jdbcType=BIT},
+      Text = #{text,jdbcType=LONGVARCHAR}
+    where ActivityRecordCode = #{activityrecordcode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lab.model.Activityrecord" >
+    update activityrecord
+    set SectionCode = #{sectioncode,jdbcType=VARCHAR},
+      UserID = #{userid,jdbcType=INTEGER},
+      ActivityRecordName = #{activityrecordname,jdbcType=VARCHAR},
+      PublishTime = #{publishtime,jdbcType=TIMESTAMP},
+      LastModefiedTime = #{lastmodefiedtime,jdbcType=DATE},
+      IsDeleted = #{isdeleted,jdbcType=BIT}
+    where ActivityRecordCode = #{activityrecordcode,jdbcType=VARCHAR}
+  </update>
+    <delete id="deleteByName">
+    delete from activityrecord
+    where ActivityRecordName = #{activityrecordname}
+  </delete>
+  
+    <select id="selectBySectionCode" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from activityrecord
+    where SectionCode = #{sectionCode,jdbcType=VARCHAR}
+	</select>
+</mapper>
