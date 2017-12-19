@@ -5,7 +5,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-@Mapper
 public interface UserMapper {
     int deleteByPrimaryKey(Integer userid);
 
@@ -14,6 +13,8 @@ public interface UserMapper {
     int insertSelective(User record);
 
     User selectByPrimaryKey(Integer userid);
+
+    List<User> selectByUsername(String username);
 
     int updateByPrimaryKeySelective(User record);
 

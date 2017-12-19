@@ -5,7 +5,6 @@ import com.lab.model.Activityrecord;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-@Mapper
 public interface ActivityrecordMapper {
     int deleteByPrimaryKey(String activityrecordcode);
 

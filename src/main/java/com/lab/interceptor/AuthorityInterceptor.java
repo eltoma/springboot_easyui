@@ -90,11 +90,12 @@ public class AuthorityInterceptor implements HandlerInterceptor{
         Date startTime = (Date)httpServletRequest.getAttribute(REQ_START_TIME);
 
 
+
         sb.append("\n======================================================");
         sb.append("\n-- 请求URL：" + httpServletRequest.getMethod() + " " + httpServletRequest.getRequestURI());
         sb.append("\n-- 请求时间：" + df.format(startTime));
         sb.append("\n-- 持续时间：" + Long.valueOf(System.currentTimeMillis() - startTime.getTime()));
-        sb.append("\n-- 持续时间：" + httpServletRequest.getContentType());
+        sb.append("\n-- 请求类型：" + httpServletRequest.getContentType());
 
         if(e != null) {
             sb.append("\n-- 异常信息：" + e.getMessage());

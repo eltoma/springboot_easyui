@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Basic Layout - jQuery EasyUI Demo</title>
     <link rel="stylesheet" type="text/css" href="/easyui/themes/bootstrap/easyui.css">
     <link rel="stylesheet" type="text/css" href="/easyui/themes/icon.css">
 
     <script type="text/javascript" src="/easyui/jquery.min.js"></script>
     <script type="text/javascript" src="/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/js/common/extend.js"></script>
+
     <script type="text/javascript" src="/js/systemManager/user.js"></script>
 </head>
 <body class="easyui-layout">
@@ -22,10 +24,10 @@
                        data-options="prompt:'请输入用户名',validType:'text'">
             </td>
             <td>
-                <input class="easyui-textbox" label="年龄:"
+                <input class="easyui-textbox" label="学号:"
                        labelPosition="before"
                        labelAlign="right"
-                       data-options="prompt:'请输入年龄',validType:'number'">
+                       data-options="prompt:'请输入学号',validType:'number'">
             </td>
             <td>
                 <a class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="Search();">检索</a>
@@ -39,24 +41,124 @@
 <div data-options="region:'center',split:true" style=" background: #ffff;height:320px">
     <table id="dataview"> </table>
     <div id="toolbar" style="height:30px">
-        <form>
-            <table style="height:30px">
-                <tr>
-                    <td>
-                        <a class="easyui-linkbutton" id="Edit" data-options="plain:true,iconCls:'icon-edit' "
-                           onclick="add()" >新增</a>
-                    </td>
-                    <td><div class="datagrid-btn-separator"></div></td>
-                    <td>
-                        <a class="easyui-linkbutton" id="remove" data-options="plain:true,iconCls:'icon-cancel' "
-                           onclick="remove()" >删除</a>
-                    </td>
-                    <td><div class="datagrid-btn-separator"></div></td>
-                </tr>
-            </table>
-        </form>
+        <table style="height:30px">
+            <tr>
+                <td>
+                    <a class="easyui-linkbutton" id="Edit" data-options="plain:true,iconCls:'icon-edit' "
+                       onclick="$('#win').window('open'); $('#userForm').form('clear')" >
+                        新增
+                    </a>
+                </td>
+                <td><div class="datagrid-btn-separator"></div></td>
+                <td>
+                    <a class="easyui-linkbutton" id="remove" data-options="plain:true,iconCls:'icon-cancel' "
+                       onclick="remove()" >删除</a>
+                </td>
+                <td><div class="datagrid-btn-separator"></div></td>
+            </tr>
+        </table>
     </div>
 </div>
 
 </body>
+<!-- 用户信息窗口，可以在新增，查看，删除，修改功能上重用 -->
+<div id="win" class="easyui-window" title="添加用户" style="width:750px;height:300px"
+     data-options="iconCls:'icon-save',modal:true, closed:false, resizable:false">
+    <form id="userForm">
+        <table style="border-collapse:separate; border-spacing:0px 30px;margin:0 auto">
+            <tr>
+                <td>
+                    <input class="easyui-textbox" type="text" name="username" style="width:100%"
+                           labelPosition="before" labelAlign="right" data-options="label:'用户名',required:true">
+                </td>
+                <td>
+                    <input class="easyui-textbox" type="text" name="name" style="width:100%"
+                           labelPosition="before" labelAlign="right" data-options="label:'真实姓名',required:true">
+                </td>
+                <td>
+                    <input id="sex" class="easyui-combobox" type="text" name="gender" style="width:100%"
+                           labelPosition="before" labelAlign="right"
+                           data-options="label:'性别',
+                           required:true,
+                           panelHeight:50,
+                           valueField: 'val',
+		                   textField: 'sex',
+                           data: [{
+                                sex: '男',
+                                val: true
+                              },{
+                                sex: '女',
+                                val: false
+                              }]
+                            ">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input class="easyui-textbox" type="text" name="studentid" style="width:100%"
+                           labelPosition="before" labelAlign="right" data-options="label:'学号',required:true">
+                </td>
+                <td>
+                    <input class="easyui-textbox" type="text" name="emailaddress" style="width:100%"
+                           labelPosition="before" labelAlign="right"
+                           data-options="label:'邮箱',required:true,validType:'email'">
+                </td>
+                <td>
+                    <input class="easyui-textbox" type="text" name="major" style="width:100%"
+                           labelPosition="before" labelAlign="right" data-options="label:'专业',required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input class="easyui-datebox" type="text" name="birthtime" style="width:100%"
+                           labelPosition="before" labelAlign="right" data-options="label:'生日',required:true">
+                </td>
+                <td>
+                    <input class="easyui-datebox" type="text" name="graduatetime" style="width:100%"
+                           labelPosition="before" labelAlign="right" data-options="label:'毕业时间',required:true">
+                </td>
+                <td>
+                    <input class="easyui-textbox" type="text" name="graduatedestination" style="width:100%"
+                           labelPosition="before" labelAlign="right" data-options="label:'就业地点',required:true">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <div>
+        <table style="margin: 0 auto">
+            <tr>
+                <td style="border-spacing:10px 0px;" colspan="3">
+                    <a class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="addSubmit('userForm')">提交</a>
+                    <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" onclick="$('#userForm').form('clear')">清空</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

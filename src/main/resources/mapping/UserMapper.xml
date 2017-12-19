@@ -30,6 +30,13 @@
     where UserID = #{userid,jdbcType=INTEGER}
   </select>
 
+  <select id="selectByUsername" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where UserName = #{username,jdbcType=INTEGER}
+  </select>
+
   <!-- 这个方法是我自己加的 -->
   <select id="selectAllUser" resultMap="BaseResultMap">
   select

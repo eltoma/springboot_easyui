@@ -14,9 +14,9 @@ spring:
   # 数据源
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/108
+    url: jdbc:mysql://127.0.0.1:3306/lab108
     username: root
-    password: root
+    password: zjb622622
     # durid数据源
     type: com.alibaba.druid.pool.DruidDataSource
     filters: stat
@@ -46,7 +46,6 @@ pagehelper:
     params: count=countSql
 
 # 显示sql语句日志配置
-logging.level:
-    com.lab.mapper: debug
+logging.level.com.lab.dao: debug
 
 
